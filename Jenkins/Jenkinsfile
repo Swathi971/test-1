@@ -25,16 +25,18 @@ pipeline {
             }
         }
 
-        stage('codescan') {
-            steps {
-                withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-                   sh ''' mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
--Dsonar.login=$SONAR_AUTH_TOKEN \
--Dsonar.host.url=http://44.203.87.237:9000/
-'''
-                }
+       stage('codescan') {
+    steps {
+        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+            sh '''
+                mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+                -Dsonar.login=$SONAR_AUTH_TOKEN \
+                -Dsonar.host.url=http://44.203.87.237:9000/
+            '''
             }
-        }
+           }
+       }
+
 
         stage('Build and tag') {
             steps {
