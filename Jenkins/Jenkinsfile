@@ -31,7 +31,7 @@ pipeline {
             sh '''
                 mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                 -Dsonar.login=$SONAR_AUTH_TOKEN \
-                -Dsonar.host.url=http://34.238.52.170:9000/
+                -Dsonar.host.url=http://44.202.152.245:9000/
             '''
             }
            }
@@ -55,7 +55,7 @@ pipeline {
                 sh '''
                     docker stop c2 || true
                     docker rm c2 || true
-                    docker run -it -d --name c2 -p 9002:8080 swathi971/webapp:1
+                    docker run -it -d --name c2 -p 9003:8080 swathi971/webapp:1
                 '''
             }
         }
